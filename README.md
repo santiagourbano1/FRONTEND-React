@@ -7,6 +7,8 @@
 - Protección de rutas con PrivateRoute
 - Contexto de autenticación (AuthContext)
 
+<img src="src/assets/login.png" width="600" alt="Login del sistema">
+
 ---
 
 ## 📋 Commit 2 - Listado de tickets con filtros
@@ -14,6 +16,9 @@
 - Consumo de API GET tickets
 - Filtros por estado, prioridad y categoría
 - Integración con contexto de tickets
+
+<img src="src/assets/dashboard.png" width="600" alt="Dashboard principal">
+<img src="src/assets/Ticket-prioridad.png" width="600" alt="Prioridad de tickets">
 
 ---
 
@@ -23,10 +28,13 @@
 - Envío POST al backend
 - Actualización del listado después de crear ticket
 
+<img src="src/assets/Formulario.png" width="600" alt="Formulario de creación">
+<img src="src/assets/CreacionTicket.png" width="600" alt="Creación exitosa">
+
 ---
 
-## 🛠 Tecnologías
-- React + TypeScript
-- Context API
-- Axios
-- React Router
+## 🛡️ Commit 4 - Mejoras en UX y Eliminación
+- Implementación de mensajes de error
+- Lógica de borrado con confirmación
+
+<img src="src/assets/EliminacionTickets.png" width="600" alt="Eliminación de tickets">
