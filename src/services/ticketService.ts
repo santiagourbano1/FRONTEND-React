@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/tickets";
-
-// 🔥 Instancia de Axios
+// ======================
+// AXIOS INSTANCE
+// ======================
 const api = axios.create({
     baseURL: "http://localhost:8080/api",
     headers: {
@@ -10,17 +10,31 @@ const api = axios.create({
     },
 });
 
-// 🔐 INTERCEPTOR JWT (MEJOR PRÁCTICA)
+// ======================
+// JWT INTERCEPTOR
+// ======================
 api.interceptors.request.use((config) => {
 
     const token = localStorage.getItem("token");
 
     if (token) {
+        config.headers = config.headers ?? {};
         config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;
 });
+
+// ======================
+// TYPES (opcional pero pro)
+// ======================
+export type TicketDTO = {
+    titulo: string;
+    descripcion: string;
+    prioridad: string;
+    categoriaId: number;
+    status?: string;
+};
 
 // ======================
 // OBTENER TICKETS
@@ -33,13 +47,7 @@ export const getTickets = async () => {
 // ======================
 // CREAR TICKET
 // ======================
-export const createTicket = async (dto: {
-    titulo: string;
-    descripcion: string;
-    prioridad: string;
-    categoriaId: number;
-    status?: string;
-}) => {
+export const createTicket = async (dto: TicketDTO) => {
     const response = await api.post("/tickets", dto);
     return response.data;
 };

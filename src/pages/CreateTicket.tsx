@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, PlusCircle, FileText, ClipboardList } from "lucide-react";
 import axios from "axios";
 import "./CreateTicket.css";
-import { useTickets } from "../context/TicketsContext"; // 🔥 IMPORTAMOS EL CONTEXTO
+import { useTickets } from "../context/TicketsContext";
+
+const API_URL = "http://localhost:8080/api/tickets";
 
 export default function CreateTicket() {
   const navigate = useNavigate();
   const titleRef = useRef<HTMLInputElement | null>(null);
-  
-  // 🔥 EXTRAEMOS LA FUNCIÓN PARA RECARGAR LOS TICKETS
+
   const { refreshTickets } = useTickets();
 
   const [title, setTitle] = useState("");
@@ -31,22 +32,31 @@ export default function CreateTicket() {
     description.trim() !== "" &&
     categoryId.trim() !== "";
 
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setCategoryId("");
+    setPriority("MEDIA");
+    setStatus("ABIERTO");
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     if (loading || !isFormValid) return;
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("No hay sesión activa");
+      return;
+    }
 
     setLoading(true);
     setError(null);
     setSuccessMessage(null);
 
     try {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        setError("No hay sesión activa");
-        return;
-      }
-
       const payload = {
         titulo: title.trim(),
         descripcion: description.trim(),
@@ -57,25 +67,23 @@ export default function CreateTicket() {
 
       console.log("CREATE TICKET PAYLOAD:", payload);
 
-      const response = await axios.post(
-        "http://localhost:8080/api/tickets",
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(API_URL, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       console.log("TICKET CREADO:", response.data);
 
       setSuccessMessage("Ticket creado correctamente");
 
-      // 🔥 LE DECIMOS AL CONTEXTO QUE ACTUALICE LOS DATOS GLOBALES
       await refreshTickets();
 
-      // Redirigimos al dashboard de manera limpia
-      navigate("/dashboard");
+      resetForm();
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 600);
 
     } catch (err: any) {
       console.error("CREATE TICKET ERROR:", err?.response?.data);
@@ -89,30 +97,30 @@ export default function CreateTicket() {
     <div className="min-h-screen page-bg">
       <div className="container">
 
-        {/* HEADER */}
         <header className="hero-card" aria-hidden>
           <div className="hero-overlay" />
           <div className="hero-blur hero-blur-1" />
           <div className="hero-blur hero-blur-2" />
+
           <div className="hero-content">
             <div className="hero-icon">
               <ClipboardList className="icon-white" />
             </div>
+
             <div>
               <h1 className="hero-title">Crear Ticket</h1>
               <p className="hero-sub">
-                Registra un nuevo incidente o solicitud de soporte técnico en el sistema.
+                Registra un nuevo incidente o solicitud de soporte técnico.
               </p>
             </div>
           </div>
         </header>
 
-        {/* FORM */}
         <main className="card">
           <div className="card-header">
             <h2 className="card-title">Información del Ticket</h2>
             <p className="card-sub">
-              Complete los campos para registrar el ticket en la plataforma.
+              Complete los campos para registrar el ticket.
             </p>
           </div>
 
@@ -142,7 +150,7 @@ export default function CreateTicket() {
                 </div>
               </div>
 
-              {/* DESCRIPCION */}
+              {/* DESCRIPCIÓN */}
               <div className="field">
                 <label className="label">Descripción</label>
                 <textarea
@@ -190,7 +198,7 @@ export default function CreateTicket() {
                 </div>
               </div>
 
-              {/* CATEGORIA */}
+              {/* CATEGORÍA */}
               <div className="field">
                 <label className="label">Categoría</label>
                 <select
