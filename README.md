@@ -7,6 +7,8 @@
 - Protección de rutas con PrivateRoute
 - Contexto de autenticación (AuthContext)
 
+![Login](src/assets/login.png)
+
 ---
 
 ## 📋 Commit 2 - Listado de tickets con filtros
@@ -15,18 +17,4 @@
 - Filtros por estado, prioridad y categoría
 - Integración con contexto de tickets
 
----
-
-## 📝 Commit 3 - Crear ticket
-- Formulario para creación de tickets
-- Validación de campos
-- Envío POST al backend
-- Actualización del listado después de crear ticket
-
----
-
-## 🛠 Tecnologías
-- React + TypeScript
-- Context API
-- Axios
-- React Router
+![Dashboard](src/assets/dashboard.png)
