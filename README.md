@@ -1,21 +1,48 @@
 # Sistema de Tickets - Frontend React
 
 ## 🚀 Commit 1 - Login con JWT y protección de rutas
-![Login del sistema](src/assets/login.png)
+- Implementación de pantalla de login
+- Consumo del endpoint de autenticación
+- Almacenamiento del token en localStorage
+- Protección de rutas con PrivateRoute
+- Contexto de autenticación (AuthContext)
+
+![Login](src/assets/login.png)
 
 ---
 
 ## 📋 Commit 2 - Listado de tickets con filtros
-![Dashboard principal](src/assets/dashboard.png)
-![Prioridad de tickets](src/assets/Ticket-prioridad.png)
+- Vista de tickets en tabla/cards
+- Consumo de API GET tickets
+- Filtros por estado, prioridad y categoría
+- Integración con contexto de tickets
+
+![Dashboard](src/assets/dashboard.png)
+![Prioridad](src/assets/prioridad.png)
 
 ---
 
 ## 📝 Commit 3 - Crear ticket
-![Formulario de creación](src/assets/Formulario.png)
-![Creación exitosa](src/assets/CreacionTicket.png)
+- Formulario para creación de tickets
+- Validación de campos
+- Envío POST al backend
+- Actualización del listado después de crear ticket
+
+![Formulario](src/assets/formulario.png)
+![Creación](src/assets/creacionticket.png)
 
 ---
 
 ## 🛡️ Commit 4 - Mejoras en UX y Eliminación
-![Eliminación de tickets](src/assets/EliminacionTickets.png)
+- Implementación de mensajes de error
+- Lógica de borrado con confirmación
+
+![Eliminación](src/assets/eliminacion.png)
+
+---
+
+## 🛠 Tecnologías
+- **React + TypeScript**
+- **Context API**
+- **Axios**
+- **React Router**
