@@ -28,8 +28,8 @@
 - Envío POST al backend
 - Actualización del listado después de crear ticket
 
-![formulario](src/assets/formulario.png)
-![creacion](src/assets/creacionticket.png)
+![Formulario](src/assets/formulario.png)
+![CreacionTicket](src/assets/creacionticket.png)
 
 ---
 
