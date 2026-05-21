@@ -65,6 +65,7 @@ export default function LoginPage() {
             <div className="login-card">
                 <div className="login-header">
                     <h1>Bienvenido de nuevo</h1>
+                    <h2>Iniciar sesión en el sistema de tickets</h2>
                     <p>Ingresa tus credenciales para acceder a tu cuenta</p>
                 </div>
 

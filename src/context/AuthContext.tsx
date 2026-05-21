@@ -3,15 +3,11 @@ import type { ReactNode } from "react";
 
 type AuthUser = {
     token: string;
-
     id: number;
-
     username: string;
     email: string;
-
     nombre: string;
     apellido: string;
-
     role: string;
 } | null;
 
@@ -21,7 +17,7 @@ type AuthContextType = {
     logout: () => void;
 };
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
 
@@ -30,24 +26,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return stored ? JSON.parse(stored) : null;
     });
 
-    function login(userData: NonNullable<AuthUser>) {
-
-        // 🔥 Guardar usuario completo
+    const login = (userData: NonNullable<AuthUser>) => {
         localStorage.setItem("user", JSON.stringify(userData));
-
-        // 🔥 CRÍTICO: guardar token separado para Axios
         localStorage.setItem("token", userData.token);
-
         setUser(userData);
-    }
+    };
 
-    function logout() {
-
+    const logout = () => {
         localStorage.removeItem("user");
-        localStorage.removeItem("token"); // 🔥 importante para seguridad
-
+        localStorage.removeItem("token");
         setUser(null);
-    }
+    };
 
     return (
         <AuthContext.Provider value={{ user, login, logout }}>
@@ -57,11 +46,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 export function useAuth() {
-
     const ctx = useContext(AuthContext);
 
     if (!ctx) {
-        throw new Error("useAuth must be inside AuthProvider");
+        throw new Error("useAuth must be used inside AuthProvider");
     }
 
     return ctx;
