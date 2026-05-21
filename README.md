@@ -7,7 +7,7 @@
 - Protección de rutas con PrivateRoute
 - Contexto de autenticación (AuthContext)
 
-<img src="src/assets/login.png" width="600" alt="Login del sistema">
+![Login](src/assets/login.png)
 
 ---
 
@@ -17,8 +17,8 @@
 - Filtros por estado, prioridad y categoría
 - Integración con contexto de tickets
 
-<img src="src/assets/dashboard.png" width="600" alt="Dashboard principal">
-<img src="src/assets/Ticket-prioridad.png" width="600" alt="Prioridad de tickets">
+![Dashboard](src/assets/dashboard.png)
+![Prioridad](src/assets/prioridad.png)
 
 ---
 
@@ -28,8 +28,8 @@
 - Envío POST al backend
 - Actualización del listado después de crear ticket
 
-<img src="src/assets/Formulario.png" width="600" alt="Formulario de creación">
-<img src="src/assets/CreacionTicket.png" width="600" alt="Creación exitosa">
+![Formulario](src/assets/formulario.png)
+![Creación](src/assets/creacionticket.png)
 
 ---
 
@@ -37,4 +37,12 @@
 - Implementación de mensajes de error
 - Lógica de borrado con confirmación
 
-<img src="src/assets/EliminacionTickets.png" width="600" alt="Eliminación de tickets">
+![Eliminación](src/assets/eliminacion.png)
+
+---
+
+## 🛠 Tecnologías
+- **React + TypeScript**
+- **Context API**
+- **Axios**
+- **React Router**
